@@ -11,11 +11,17 @@ export default function Navbar() {
           <Link to={`/`}>
             <li><a href="#">Home</a></li>
           </Link>
-          <Link to={`/add`}>
+          <Link to={`/addForm`}>
             <li><a href="#">Create Akun</a></li>
           </Link>
-          <Link to={`/category`}>
-            <li><a href="#">About Us</a></li>
+          <Link to={`/work`}>
+            <li><a href="/">Work</a></li>
+          </Link>
+          <Link to={`/family`}>
+            <li><a href="/">Family</a></li>
+          </Link>
+          <Link to={`/personal`}>
+            <li><a href="/">Personal</a></li>
           </Link>
         </ul>
       </div>

@@ -1,16 +1,16 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import Navbar from "../component/Navbar"
-// import Password from '../../assets/password.png'
+import './category.scss'
 import { Link } from 'react-router-dom';
 
-export default function Category ({ category }) {
+export default function Category({ category }) {
     const [data, setdata] = useState([])
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get(`http://localhost:3000/password?category=${category}`)
+                const response = await axios.get(`http://localhost:3030/password?category=${category}`)
                 setdata(response.data)
             } catch (err) {
                 console.error('Data Error', err)
@@ -20,11 +20,11 @@ export default function Category ({ category }) {
         fetchData()
     }, [category])
 
-    console.log(data);
+    console.log(data, 'VVVVVVVVV');
 
     const handleDelete = async (id) => {
         try {
-            await axios.delete(`http://localhost:3000/password/${id}`);
+            await axios.delete(`http://localhost:3030/password/${id}`);
             const updatedAccounts = data.filter((account) => account.id !== id);
             setdata(updatedAccounts);
             alert('Data berhasil dihapus');
@@ -34,29 +34,26 @@ export default function Category ({ category }) {
     };
 
     return (
-        <>
+        <div style={{display:'flex'}}>
             <Navbar />
             <div className='category-con'>
-                <h1> {category.charAt(0).toUpperCase() + category.slice(1)} Data Accounts </h1>
-                <div className={styles.container__card}>
-                    {account.map((item, index) => (
-                        <>
-                            <div className={styles.container__card__content} key={index}>
-                                <img src={Password} className={styles.content__image} />
-                                <p> {item.provider} </p>
-                                <p> {item.email} </p>
-                                <p> {item.category} </p>
-                                <div className={styles.content__button}>
-                                    <Link to={`/detailUser/${item.id}`}>
-                                        <button> Details </button>
-                                    </Link>
-                                    <button onClick={() => handleDelete(item.id)}> Delete </button>
-                                </div>
+                <div className=''>
+                    {data.map((el, index) => (
+                        <div className='' key={index}>
+                            {/* <img src={} className='' /> */}
+                            <p> {el.provider} </p>
+                            <p> {el.email} </p>
+                            <p> {el.category} </p>
+                            <div className=''>
+                                <Link to={`/password/${el.id}`}>
+                                    <button> Details </button>
+                                </Link>
+                                <button onClick={() => handleDelete(el.id)}> Delete </button>
                             </div>
-                        </>
+                        </div>
                     ))}
                 </div>
             </div>
-        </>
+        </div>
     )
 }
