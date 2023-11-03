@@ -1,0 +1,25 @@
+/* Styling for sidebar */
+.sidebar {
+  height: 93.7vh;
+  width: 200px;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  padding: 20px;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar li {
+  margin-bottom: 10px;
+}
+
+.sidebar a {
+  text-decoration: none;
+  color: white;
+  display: block;
+}
+
